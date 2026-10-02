@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-ink: var(--ink);
+  --color-chianti: var(--chianti);
+  --color-olive: var(--olive);
+  --color-parchment: var(--parchment);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  /* Grazie - espresso ink, chianti, olive leaf, cool stone parchment (not cream+terracotta) */
+  --background: #e6e2da;
+  --foreground: #1f1714;
+  --ink: #1a1210;
+  --parchment: #f3efe8;
+  --brand: #2a1c18;
+  --brand-foreground: #ffffff;
+  --chianti: #8b1e2d;
+  --olive: #5c6b48;
+  --card: #f3efe8;
+  --card-foreground: #1f1714;
+  --popover: #f3efe8;
+  --popover-foreground: #1f1714;
+  --primary: #8b1e2d;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1210;
+  --secondary-foreground: #e6e2da;
+  --muted: #d8d2c8;
+  --muted-foreground: #5a4f48;
+  --accent: #ebe5db;
+  --accent-foreground: #1f1714;
+  --destructive: #b42318;
+  --border: #c4bbb0;
+  --input: #c4bbb0;
+  --ring: #8b1e2d;
+  --radius: 0.4rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(ellipse 100% 60% at 0% 0%, rgba(92, 107, 72, 0.1), transparent 55%),
+      radial-gradient(ellipse 70% 45% at 100% 8%, rgba(139, 30, 45, 0.07), transparent 48%),
+      linear-gradient(180deg, #f0ebe3 0%, #e6e2da 45%, #ddd7cd 100%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--chianti) 28%, transparent);
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  .site-wrap {
+    @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+  }
+
+  .animate-rise {
+    animation: rise 0.7s ease-out both;
+  }
+
+  .animate-rise-delay-1 {
+    animation: rise 0.7s ease-out 0.1s both;
+  }
+
+  .animate-rise-delay-2 {
+    animation: rise 0.7s ease-out 0.2s both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-rise-delay-1,
+  .animate-rise-delay-2 {
+    animation: none;
+  }
+}
